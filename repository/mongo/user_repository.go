@@ -19,9 +19,6 @@ func NewUserRepository(db *mongo.Database, coll *mongo.Collection) domain.UserRe
 }
 
 func (u *userRepository) Save(ctx context.Context, user *domain.User) error {
-	log.Print(user)
-	//TODO implement me
-	//panic("implement me")
 	res, err := u.coll.InsertOne(ctx, user)
 	if err != nil {
 		return err
@@ -36,7 +33,7 @@ func (u *userRepository) UpdateByID(ctx context.Context, id string, user *domain
 	panic("implement me")
 }
 
-func (u *userRepository) FindAll(ctx context.Context, user *domain.User) (*[]*domain.User, error) {
+func (u *userRepository) FindAll(ctx context.Context, user *domain.User) (*[]domain.User, error) {
 	//TODO implement me
 	panic("implement me")
 }
