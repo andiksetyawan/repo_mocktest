@@ -4,6 +4,7 @@ import (
 	"context"
 	"log"
 
+	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"repo_mocktest/domain"
 )
@@ -34,8 +35,25 @@ func (u *userRepository) UpdateByID(ctx context.Context, id string, user *domain
 }
 
 func (u *userRepository) FindAll(ctx context.Context) (*[]domain.User, error) {
-	//TODO implement me
-	panic("implement me")
+	cur, err := u.coll.Find(ctx, bson.M{})
+	if err != nil {
+		return nil, err
+	}
+	defer cur.Close(ctx)
+
+	users := make([]domain.User, 0)
+	for cur.Next(ctx) {
+		var usr domain.User
+		err := cur.Decode(&usr)
+		if err != nil {
+			log.Println(err)
+			continue
+		}
+
+		users = append(users, usr)
+	}
+
+	return &users, nil
 }
 
 func (u *userRepository) FindByID(ctx context.Context, id string) (*domain.User, error) {
