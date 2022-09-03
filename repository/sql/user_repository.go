@@ -46,12 +46,12 @@ func (u userRepository) UpdateByID(ctx context.Context, id string, user *domain.
 	panic("implement me")
 }
 
-func (u userRepository) FindAll(ctx context.Context, user *domain.User) (*[]domain.User, error) {
+func (u userRepository) FindAll(ctx context.Context) (*[]domain.User, error) {
 	//TODO implement me
 	panic("implement me")
 }
 
-func (u userRepository) FindByID(ctx context.Context, user *domain.User) (*domain.User, error) {
+func (u userRepository) FindByID(ctx context.Context, id string) (*domain.User, error) {
 	//TODO implement me
 	panic("implement me")
 }
