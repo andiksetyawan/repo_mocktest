@@ -12,7 +12,7 @@ type User struct {
 type UserRepository interface {
 	Save(ctx context.Context, user *User) error
 	UpdateByID(ctx context.Context, id string, user *User) error
-	FindAll(ctx context.Context, user *User) (*[]*User, error)
+	FindAll(ctx context.Context, user *User) (*[]User, error)
 	FindByID(ctx context.Context, user *User) (*User, error)
 	DeleteByID(ctx context.Context, id string) error
 }
